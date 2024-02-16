@@ -10,9 +10,10 @@ export type TaskType = {
 type TodolistProps = {
     title?: string;
     tasks: Array<TaskType>;
+	 date?: string
 };
 
-const Todolist = ({ title, tasks }: TodolistProps) => {
+const Todolist = ({ title, tasks, date }: TodolistProps) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -20,7 +21,8 @@ const Todolist = ({ title, tasks }: TodolistProps) => {
                 <input />
                 <button>+</button>
             </div>
-            <ul>
+            
+				{tasks.length === 0 ? (<span>Таких задач нет</span>) : (<ul>
                 {tasks &&
                     tasks.map((task) => {
                         return (
@@ -38,7 +40,10 @@ const Todolist = ({ title, tasks }: TodolistProps) => {
                 <li>
                     <input type="checkbox" defaultChecked={false} /> <span>React</span>
                 </li>
-            </ul>
+            </ul>)}
+				<div>
+					{date}
+				</div>
             <div>
                 <button>All</button>
                 <button>Active</button>
