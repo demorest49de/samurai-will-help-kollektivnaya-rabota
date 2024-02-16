@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+export type TaskType = {
+    id: number;
+    title: string;
+    isDone: boolean;
+};
 
 type TodolistProps = {
-	title?: string,
-}
+    title?: string;
+    tasks: Array<TaskType>;
+};
 
-const Todolist = ({title}: TodolistProps) => {
-	
+const Todolist = ({ title, tasks }: TodolistProps) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -16,6 +21,14 @@ const Todolist = ({title}: TodolistProps) => {
                 <button>+</button>
             </div>
             <ul>
+                {tasks &&
+                    tasks.map((task) => {
+                        return (
+                            <li key={task.id}>
+                                <input type="checkbox" defaultChecked={task.isDone} /> <span>{task.title}</span>
+                            </li>
+                        );
+                    })}
                 <li>
                     <input type="checkbox" defaultChecked={true} /> <span>HTML&CSS</span>
                 </li>
